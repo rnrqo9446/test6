@@ -13,6 +13,7 @@ class Exhibition(models.Model):
     tel=models.CharField(max_length=300)
     place1=models.CharField(max_length=300)
     place2=models.CharField(max_length=300)
+    place_url=models.CharField(max_length=300)
     price=models.CharField(max_length=300)
     link=models.CharField(max_length=300)
     image = models.ImageField(upload_to='images/')
@@ -28,6 +29,7 @@ class Musical(models.Model):
     tel=models.CharField(max_length=300)
     place1=models.CharField(max_length=300)
     place2=models.CharField(max_length=300)
+    place_url=models.CharField(max_length=300)
     price=models.CharField(max_length=300)
     link=models.CharField(max_length=300)
     image = models.ImageField(upload_to='images/')
@@ -35,6 +37,7 @@ class Musical(models.Model):
     def __str__(self):
         return self.title
 
+    
 
 class Concert(models.Model):
     title= models.CharField(max_length=300)
@@ -43,6 +46,7 @@ class Concert(models.Model):
     tel=models.CharField(max_length=300)
     place1=models.CharField(max_length=300)
     place2=models.CharField(max_length=300)
+    place_url=models.CharField(max_length=300)
     price=models.CharField(max_length=300)
     link=models.CharField(max_length=300)
     image = models.ImageField(upload_to='images/')
@@ -58,6 +62,7 @@ class Classic(models.Model):
     tel=models.CharField(max_length=300)
     place1=models.CharField(max_length=300)
     place2=models.CharField(max_length=300)
+    place_url=models.CharField(max_length=300)
     price=models.CharField(max_length=300)
     link=models.CharField(max_length=300)
     image = models.ImageField(upload_to='images/')

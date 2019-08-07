@@ -23,4 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',show.views.home, name='home'),
     path('musical/home/',show.views.musical_home,name='musical_home'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('musical/home/<int:musical_id>/',show.views.musical_detail,name='musical_detail'),
+    path('exhibition/home/',show.views.exhibition_home,name='exhibition_home'),
+    path('exhibition/home/<int:exhibition_id>/',show.views.exhibition_detail,name='exhibition_detail'),
+    path('classic/home/',show.views.classic_home,name='classic_home'),
+    path('classic/home/<int:classic_id>/',show.views.classic_detail,name='classic_detail'),
+    path('concert/home/',show.views.concert_home,name='concert_home'),
+    path('concert/home/<int:concert_id>/',show.views.concert_detail,name='concert_detail'),
+
+    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
