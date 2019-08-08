@@ -1,0 +1,19 @@
+{% load static %}
+
+<head>
+ <link href="{% static 'show/home.css' %}" rel="stylesheet" type="text/css">
+</head>
+<div style="align: center; color: black; background-color: #78C2AD; text-align: center;">
+    <div>
+        {% if form.errors %}
+        <p>아이디나 비밀번호가 틀렸습니다.</p>
+        {% endif %}
+        <br>
+        <p style=" font-size: 36px;">로그인</p>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="myButton" style="margin-bottom: 30px;">login</button>
+        </form>
+    </div>
+</div>

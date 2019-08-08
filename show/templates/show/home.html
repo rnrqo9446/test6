@@ -32,23 +32,26 @@
 
         <div class="row">
 
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    {{ musical.id }}
-                    {% if musical.image %}
-                    <a href="#"><img class="card-img-top" src="{{ musical.image.url }}" alt="" height=300></a>
-                    {% endif %}
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">{{ musical.title }}</a>
-                        </h4>
-                        <h5>{{musical.date}}</h5>
-                        <h5>{{musical.place1}}</h5>
-                        <p class="card-text"></p>
+                    {% for musical in musicals.all %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            {% if musical.image %}
+                            <a href="{% url 'musical_detail' musical.id %}"><img class="card-img-top" src="{{ musical.image.url }}" alt="" height=300></a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                <a href="{% url 'musical_detail' musical.id %}" style="color: green;">{{ musical.title }}</a>
+                                </h4>
+                                <h5> {{musical.date}}</h5>
+                                <h5>{{musical.place1}}</h5>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted"></small>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 

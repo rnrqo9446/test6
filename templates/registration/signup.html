@@ -1,0 +1,18 @@
+{% load static %}
+
+<head>
+ <link href="{% static 'show/home.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+    <div style="align: center; color: black; background-color: #78C2AD;">
+            <br>
+            <h1 style=" text-align: center;">회원가입</h1>
+        <div style="margin-left: 400px;">
+            <form method="POST" action="{% url 'accounts:signup' %}">
+                {% csrf_token %}
+                {{ userform.as_p }}
+                <br><br>
+                <input type="submit" value='sign up' class="myButton" style="margin-bottom: 80px; margin-left: 300px;"></input>
+            </form>
+        </div>
+    </div>

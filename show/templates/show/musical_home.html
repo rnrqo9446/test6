@@ -13,14 +13,14 @@
                     {% endif %}
                     <div class="card-body">
                         <h4 class="card-title">
-                        <a href="{% url 'musical_detail' musical.id %}">{{ musical.title }}</a>
+                        <a href="{% url 'musical_detail' musical.id %}" style="color: green;">{{ musical.title }}</a>
                         </h4>
                         <h5> {{musical.date}}</h5>
                         <h5>{{musical.place1}}</h5>
                         <p class="card-text"></p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        <small class="text-muted"></small>
                     </div>
                 </div>
             </div>

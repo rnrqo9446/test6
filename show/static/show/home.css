@@ -2,14 +2,14 @@ body {
     overflow-x: hidden;
     /* padding-top: 56px; */
     width: 100%;
-    background-color: #F9FEEA;
-    font-family: 'Jeju Gothic', sans-serif;
+    background-color:#F8F9FA;
+    font-family: 'Nanum Myeongjo', serif;
   }
   
-.h1 .h2 .h3 .h4 .p {
-  font-family: 'Jeju Gothic', sans-serif;
-  font-family: 
-}
+/* .h1 .h2 .h3 .h4 .p {
+
+} */
+
 
 .detail {
   font-size: 20px;
@@ -58,3 +58,26 @@ body {
       margin-left: -15rem;
     }
   }
+
+  .myButton {
+    background-color:#ffffff;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #f3969a;
+    display:inline-block;
+    cursor:pointer;
+    color:#f3969a;
+    font-family:Trebuchet MS;
+    font-size:17px;
+    font-weight:bold;
+    padding:8px 15px;
+    text-decoration:none;
+ }
+ .myButton:hover {
+    background-color:#ffdee0;
+ }
+ .myButton:active {
+    position:relative;
+    top:1px;
+ }
