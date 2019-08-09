@@ -1,0 +1,65 @@
+{% extends "show/base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="fluid-center" style="padding: 15px; margin: 5px 120px;">
+        <div class="row">
+            <div style="margin: 50px;">
+                <h2>{{post_detail.title}}</h2>
+                <hr>
+                <table border=0 >
+                    <td>
+                        <img  src="{{ post.image.url }}" alt="" width=300 height=400>
+                    </td>
+                    <td style="padding: 30px;"></td>
+                    <td style="width: 800px; padding-right: 200px">
+                        <p class="detail" >
+                        카테고리: {{post.category}} <br><br>
+                        날짜: {{post.date}} <br><br>
+                        시간: {{post.time}}<br><br>
+                        전화번호: {{post.tel}}<br><br>
+                        장소: <a href="{{post.place_url}}" target='_blank'>{{post.place2}}</a><br><br>
+                        가격: {{post.price}}<br><br>
+                        
+                        <a href="{{post.link}}" target='_blank'><button >티켓예매</button></a></p>
+                        
+                    </td>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <p>댓글!! {{post.comments.count}}개</p>
+
+        {% for comment in post.comments.all %}
+        <div>
+            <p class="bg-danger">{{comment.created_date}}</p>
+            <p class="bg-warning"><strong>{{comment.nickname}}</strong></p>
+            <p class="bg-danger">{{comment.text|linebreaks}}</p>
+
+            <a href = "{% url 'comment_delete' post.id  %}" class="btn btn-warning" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
+            <br>
+
+        </div>
+
+        <br>
+
+        {% empty %}
+        <p>댓글이 존재하지 않습니다!!!</p>
+        {% endfor %}
+
+        <div class="form-group">
+                <h4>댓글 작성</h4>
+                <form method="POST" action="{% url 'add_comment' post.id %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-primary">작성하기!!</button>
+                </form> 
+        </div>
+    
+
+    </div>
+</div>
+{% endblock %}
