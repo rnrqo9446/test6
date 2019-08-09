@@ -10,6 +10,7 @@ class Category(models.Model):
     category = models.CharField(max_length=30)
 
     def __str__(self):
+
         return self.category
     
 class Post(models.Model):
@@ -98,7 +99,12 @@ class Comment(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     likes = models.ManyToManyField(User, related_name='likes')
+    dislikes = models.ManyToManyField(User, related_name='dislikes')
     
 
     def __str__(self):
         return self.text
+
+    @property
+    def count_likes(self):
+        return self.likes.count()

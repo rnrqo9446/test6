@@ -11,30 +11,41 @@ def home(request):
 def detail(request, post_id):
     post_detail=get_object_or_404(Post, pk = post_id)
     form = CommentForm()
-    comment = Comment.objects.filter(post=post_detail).order_by('likes')
+    comments = Comment.objects.filter(post=post_detail)
+    commentss = Comment.objects.filter(post=post_detail)
+    comments = sorted(comments, key=lambda c: c.likes.count(), reverse=True)
+
     
-    return render(request, 'show/detail.html',{'post':post_detail, 'form':form, 'comment':comment, 'exhibition':exhibition})
+    return render(request, 'show/detail.html',{'post':post_detail, 'form':form, 'comments': comments, "commentss":commentss, 'exhibition':exhibition})
 
 def exhibition(request):
     posts = Post.objects
-    e = get_object_or_404(Category, pk = 1)
-    print(e)
-    musical = Post.objects.filter(category=e)
-    print(musical)
-    
-    return render(request, 'show/exhibition.html', {'posts' : posts, 'musical':musical})
+    # category = request.GET.get('category')
+    # if category == 'exhibition':
+    #     exhibitions = Post.objects.filter(category=exhibition)
+    # elif category == 'musical':
+
+    # exhibition = get_object_or_404(Category, pk= 2)
+    # print(exhibition)
+    # exhibitions = Post.objects.filter(category=exhibition)
+    # print(exhibitions)
+    exhibitions = Post.objects.filter(category=2)
+    return render(request, 'show/exhibition.html', {'exhibitions':exhibitions})
 
 def musical(request):
     posts = Post.objects
-    return render(request, 'show/musical.html', {'posts' : posts})
+    musicals = Post.objects.filter(category=1)
+    return render(request, 'show/musical.html', {'musicals' : musicals })
 
 def concert(request):
     posts = Post.objects
-    return render(request, 'show/concert.html', {'posts' : posts})
+    concerts = Post.objects.filter(category=3)
+    return render(request, 'show/concert.html', {'concerts' : concerts})
 
 def classic(request):
-    posts = Post.objects
-    return render(request, 'show/classic.html', {'posts' : posts})
+    posts= Post.objects
+    classics = Post.objects.filter(category=4)
+    return render(request, 'show/classic.html', {'classics' : classics})
 
 def add_comment(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
@@ -54,11 +65,10 @@ def comment_delete(request, comment_id):
 
 def post_like(request, comment_id ) :
     # 코멘트 정보 받아옴
-    post_detail=get_object_or_404(Post, pk = post_id)
     comment = get_object_or_404(Comment, pk=comment_id)
     post = comment.post
-    # post = get_object_or_404(Post, pk=post_id)
-    # 사용자가 로그인 된건지 확인
+    print(post.comments.all)
+    
     if not request.user.is_active:
         return redirect('detail', post_id=post.id)    
 
@@ -69,11 +79,10 @@ def post_like(request, comment_id ) :
     # print(comment.likes.count())
     
     count = comment.likes.count()
-    comment = Comment.objects.filter(post=post_detail).order_by('likes')
 
     # print(Comment.objects.filter(like=request.user.id).exists())
-    # if comment.likes == user: # 이 댓글에 지금 로그인한 사용자가 좋아요 누른 적 있으면
-    #     print(aa)
+    if comment.likes == user: # 이 댓글에 지금 로그인한 사용자가 좋아요 누른 적 있으면
+        print(aa)
 
     #좋아요에 사용자가 존재하면
     # if comment.likes.filter(id = request.user.id).exists():
@@ -87,43 +96,3 @@ def post_like(request, comment_id ) :
      #우리는 코멘트를 가져와서 거기다가 좋아요 기능을 만들건데
     # 코멘트마다 뭐를 하나씩 클릭하면
     # 코멘트 밑에 있는 숫자가 올라가겠끔만 하면 됨!!!
-
-
-
-
-
-# def home(request):
-#     musicals=Musical.objects
-#     return render(request, 'show/home.html',{'musicals':musicals})
-
-# def musical_home(request):
-#     musicals=Musical.objects
-#     return render(request, 'show/musical_home.html',{'musicals':musicals})
-
-# def musical_detail(request,musical_id):
-#     musical_detail=get_object_or_404(Musical,pk= musical_id)
-#     return render(request, 'show/musical_detail.html',{'musical':musical_detail})
-
-# def exhibition_home(request):
-#     exhibitions=Exhibition.objects
-#     return render(request, 'show/exhibition_home.html',{'exhibitions':exhibitions})
-
-# def exhibition_detail(request,exhibition_id):
-#     exhibition_detail=get_object_or_404(Exhibition,pk= exhibition_id)
-#     return render(request, 'show/exhibition_detail.html',{'exhibition':exhibition_detail})
-
-# def concert_home(request):
-#     concerts=Concert.objects
-#     return render(request, 'show/concert_home.html',{'concerts':concerts})
-
-# def concert_detail(request,concert_id):
-#     concert_detail=get_object_or_404(Concert,pk= concert_id)
-#     return render(request, 'show/concert_detail.html',{'concert':concert_detail})
-
-# def classic_home(request):
-#     classics=Classic.objects
-#     return render(request, 'show/classic_home.html',{'classics':classics})
-
-# def classic_detail(request,classic_id):
-#     classic_detail=get_object_or_404(Classic,pk= classic_id)
-#     return render(request, 'show/classic_detail.html',{'classic':classic_detail})

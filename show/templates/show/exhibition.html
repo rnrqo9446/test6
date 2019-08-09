@@ -29,8 +29,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        {% for post in musical %}
-            {{post.title}}
+        {% for post in exhibitions %}
             <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         {% if post.image %}
@@ -51,20 +50,6 @@
                     </div>
                 </div>
         {% endfor %}
-        <div class="row">
-                    {% for post in posts.all %}
-                        {{post.category}}
-                        {% if post.category == "exhibition"  %}
-                            <h1>aaaaaa</h1>
-                            {% else %}
-                            <h1>{{post.category}}</h1>
-                        {% endif %}
-                        
-                        
-                        
-                    {% endfor %}
-                   
-                </div>
             </div>
 
         </div>

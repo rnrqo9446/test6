@@ -31,27 +31,36 @@
         <hr>
 
         <p>댓글!! {{post.comments.count}}개</p>
+        <!-- 좋아요 순으로 정렬 된것이지만 숫자는 상관없음 -->
 
-        {% for comment in post.comments.all %}
-        <div>
-            <p class="bg-danger">{{comment.created_date}}</p>
-            <p class="bg-warning"><strong>{{comment.nickname}}</strong></p>
-            <p class="bg-danger">{{comment.text|linebreaks}}</p>
+        {% for comment in comments  %}
+        
+            {% for comment in commentss  %}    
+                <div>
+                    <p class="bg-danger">{{comment.created_date}}</p>
+                    <p class="bg-warning"><strong>{{comment.nickname}}</strong></p>
+                    <p class="bg-danger">{{comment.text|linebreaks}}</p>
 
-            <br>
+                    <br>
 
-            <a href="{% url 'post_like' comment.id %}">좋아요!</a>
-            <p> {{ comment.likes.count }} </p>
+                    <a href="{% url 'post_like' comment.id %}">좋아요!</a>
+                    <p> {{ comment.likes.count }} </p>
 
-            <a href = "{% url 'comment_delete' comment.id %}" class="btn btn-warning" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
-            <br>
+                    <a href="{% url 'detail' post.id %}">싫어요!</a>
+                    <P> {{ comment.dislikes.count }} </P>
+                
+                    <a href = "{% url 'comment_delete' comment.id %}" class="btn btn-warning" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
+                    <br>
 
-        </div>
+                </div>
 
-        <br>
+                <br>
 
-        {% empty %}
-        <p>댓글이 존재하지 않습니다!!!</p>
+                {% empty %}
+                <p>댓글이 존재하지 않습니다!!!</p>
+            
+            
+            {% endfor %}
         {% endfor %}
 
         <div class="form-group">
