@@ -38,7 +38,12 @@
             <p class="bg-warning"><strong>{{comment.nickname}}</strong></p>
             <p class="bg-danger">{{comment.text|linebreaks}}</p>
 
-            <a href = "{% url 'comment_delete' post.id  %}" class="btn btn-warning" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
+            <br>
+
+            <a href="{% url 'post_like' comment.id %}">좋아요!</a>
+            <p> {{ comment.likes.count }} </p>
+
+            <a href = "{% url 'comment_delete' comment.id %}" class="btn btn-warning" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
             <br>
 
         </div>
@@ -59,7 +64,6 @@
                 </form> 
         </div>
     
-
     </div>
 </div>
 {% endblock %}

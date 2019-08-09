@@ -29,7 +29,7 @@ urlpatterns = [
     path('showtime/classic/', show.views.musical, name='classic'),
     path('post/<int:post_id>/comment/', show.views.add_comment, name='add_comment'),
     path('comment/<int:comment_id>/delete', show.views.comment_delete, name='comment_delete'),
-
+    path('comment/<int:comment_id>/like/', show.views.post_like, name='post_like'),
 
 
     

@@ -11,7 +11,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category
-
+    
 class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title= models.CharField(max_length=300)
@@ -97,4 +97,8 @@ class Comment(models.Model):
     nickname = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
-        
+    likes = models.ManyToManyField(User, related_name='likes')
+    
+
+    def __str__(self):
+        return self.text

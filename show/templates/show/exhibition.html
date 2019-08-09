@@ -29,32 +29,39 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
+        {% for post in musical %}
+            {{post.title}}
+            <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        {% if post.image %}
+                        <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="{{ post.image.url }}" alt="" height=300></a>
+                        {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title">
+                            <a href="{% url 'detail' post.id %}" style="color: green;">{{ post.title }}</a>
+                            </h4>
+                            <h5> 카테고리 : {{post.category}}</h5>
+                            <h5> {{post.date}}</h5>
+                            <h5>{{post.place1}}</h5>
+                            <p class="card-text"></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"></small>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
         <div class="row">
                     {% for post in posts.all %}
                         {{post.category}}
-                        {% if post.category ==  %}
-                        
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                {% if post.image %}
-                                <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="{{ post.image.url }}" alt="" height=300></a>
-                                {% endif %}
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                    <a href="{% url 'detail' post.id %}" style="color: green;">{{ post.title }}</a>
-                                    </h4>
-                                    <h5> 카테고리 : {{post.category}}</h5>
-                                    <h5> {{post.date}}</h5>
-                                    <h5>{{post.place1}}</h5>
-                                    <p class="card-text"></p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted"></small>
-                                </div>
-                            </div>
-                        </div>
+                        {% if post.category == "exhibition"  %}
+                            <h1>aaaaaa</h1>
+                            {% else %}
+                            <h1>{{post.category}}</h1>
                         {% endif %}
+                        
+                        
+                        
                     {% endfor %}
                    
                 </div>
